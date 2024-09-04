@@ -5,14 +5,13 @@ const twitterBtn = document.getElementById('twitter');
 const newQuoteBtn = document.getElementById('new-quote');
 const loader = document.getElementById('loader');
 
-// Show loading
-function loading() {
+
+function showLoadingSpinner() {
     loader.hidden = false;
     quoteContainer.hidden = true;
 }
 
-// Hide loading
-function complete() {
+function removeLoadingSpinner() {
     quoteContainer.hidden = false;
     loader.hidden = true;  
 }
@@ -20,7 +19,7 @@ function complete() {
 
 // Show new quote
 function newQuote() {
-    loading();
+    showLoadingSpinner();
     // Pick a random quote from apiQuotes array
     const quote = localQuotes[Math.floor(Math.random() * localQuotes.length)];
    
@@ -37,9 +36,8 @@ function newQuote() {
     } else {
         quoteText.classList.remove('long-quote');
     }
-    // Set quote and hide loader
     quoteText.textContent = quote.text;
-    complete();
+    removeLoadingSpinner();
 }
 
 // Get quotes from API
@@ -47,7 +45,7 @@ function newQuote() {
 // let apiQuotes = [];
 
 // async function getQuotes() {
-//     loading();
+//     showLoadingSpinner();
 //     const apiUrl = '';
 
 //     try {
